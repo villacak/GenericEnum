@@ -7,6 +7,7 @@ import java.util.Set;
 public class GenericEnum<K extends Enum<K>, V> {
 
 	private static final String METHOD_WITH_GET = "get";
+	private static final String TO_STRING = "toString";
 	private Map<K, V> enumMapGeneric;
 	private Class<?> type;
 	private V value;
@@ -35,7 +36,8 @@ public class GenericEnum<K extends Enum<K>, V> {
 
 		// Select the first getMethod from the Enum
 		for (Method method : methods) {
-			if (method.getName().contains(METHOD_WITH_GET)) {
+			if (method.getName().contains(METHOD_WITH_GET) || 
+			    method.getName().contains(TO_STRING)) {
 				getMethod = method;
 				break;
 			}
